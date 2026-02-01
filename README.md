@@ -1,52 +1,26 @@
-# BuilderSDK
 
-The easiest way to build on Nouns Builder.
+## 📦 Builder SDK
 
-Builder SDK is a Typescript library that provides type safe interactions and data fetching for Nouns Builder contracts.
-
-## Getting started
-
+### Installation
 ```bash
-yarn add @buildersdk/sdk
+npm install @nouns-builder/sdk
 ```
 
-```ts
-import { BuilderSDK } from "@buildersdk/sdk";
+### Quick Start
+```typescript
+import { BuilderSDK } from '@nouns-builder/sdk';
 
-const { auction, token } = BuilderSDK.connect({
-  signerOrProvider: mainnetProvider,
+const sdk = new BuilderSDK({
+  chainId: 1,
+  rpcUrl: process.env.RPC_URL,
 });
 
-const auctionContract = auction({ address: auctionAddress });
-const tokenContract = token({ address: tokenAddress });
-
-const auctionData = await auctionContract.auction();
-const tokenURI = await tokenContract.tokenURI(auctionData.tokenId);
+// Fetch DAO details
+const dao = await sdk.getDAO(daoAddress);
 ```
 
-## Examples
+### Features
+- DAO creation and management
+- Proposal lifecycle handling
+- Token and auction interactions
 
-The following examples are provided in the examples folder of this repo.
-
-- `with-next`
-- `with-node`
-
-## Running examples
-
-To run an example locally, install dependencies.
-
-```bash
-yarn install
-```
-
-Then go into an example directory, eg: with-next.
-
-```bash
-cd examples/with-next
-```
-
-Then run the dev script.
-
-```bash
-yarn dev
-```
